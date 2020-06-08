@@ -1,0 +1,8 @@
+ion-segment-button{
+    background: darken($color: #000000, $amount: 0) !important;
+    color: lightgray !important;
+}
+
+.segment-button-checked{
+    color: var(--ion-color-primary) !important;
+}
