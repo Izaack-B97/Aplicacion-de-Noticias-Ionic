@@ -10,10 +10,12 @@ const headers = new HttpHeaders({
   'X-Api-key': apiKey
 });
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiasService {
+  headLinesPage = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +26,8 @@ export class NoticiasService {
 
 
   getTopHeadLines(){
-    return this.ejecutarQuery<RespuestaTopHeadLines>(`top-headlines?country=us`);
+    this.headLinesPage++;
+    return this.ejecutarQuery<RespuestaTopHeadLines>(`top-headlines?country=us&page=${this.headLinesPage}`);
   }
 
   getTopHeadLinesCategorias(categoria: string){
