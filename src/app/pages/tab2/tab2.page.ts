@@ -15,6 +15,10 @@ export class Tab2Page implements OnInit{
 
   constructor(private noticiaService: NoticiasService) {}
 
+  // TODO::RECUERDA QUE ESTE ES PARA LOS PENDIENTES,
+  // FIXME: ESTE ES PARA OTRA COSA
+
+
   ngOnInit(){
   }
 

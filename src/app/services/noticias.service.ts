@@ -10,7 +10,6 @@ const headers = new HttpHeaders({
   'X-Api-key': apiKey
 });
 
-
 @Injectable({
   providedIn: 'root'
 })
