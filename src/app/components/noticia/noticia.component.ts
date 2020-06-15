@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from '../../interfaces/interfaces';
-
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
+// Plugins
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-noticia',
@@ -14,7 +15,7 @@ export class NoticiaComponent implements OnInit {
   @Input() noticia: Article;
   @Input() i: number;
 
-  constructor(private iab: InAppBrowser, private actionSheetCtlr: ActionSheetController) { }
+  constructor(private iab: InAppBrowser, private actionSheetCtlr: ActionSheetController, private socialSharing: SocialSharing) { }
 
   ngOnInit() {}
 
@@ -27,6 +28,16 @@ export class NoticiaComponent implements OnInit {
     this.presentActionSheet();
   }
 
+  // Funciones Action Sheet
+  compartir(){
+    this.socialSharing.share( // Permite al usuario en que lo quiere compartir
+      this.noticia.title,
+      this.noticia.source.name,
+      '',
+      this.noticia.url
+    );
+  }
+
   // Declaramos el Action Sheet
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtlr.create({
@@ -37,7 +48,7 @@ export class NoticiaComponent implements OnInit {
           text: 'Compartir',
           icon: 'share-social-outline',
           handler: () => {
-            console.log('Compartir');
+            this.compartir();
           }
         },
         {
@@ -58,4 +69,5 @@ export class NoticiaComponent implements OnInit {
     });
     await actionSheet.present();
   }
+
 }
