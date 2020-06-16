@@ -29,4 +29,9 @@ export class DataLocalService {
       this.noticias = favoritos;
     }
   }
+
+  borrarNoticia(noticia: Article){
+    this.noticias = this.noticias.filter(notices => notices.title !== noticia.title);
+    this.storage.set('favoritos', this.noticias);
+  }
 }

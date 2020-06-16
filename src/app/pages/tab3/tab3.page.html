@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-noticias [noticias]="this.dataLocalService.noticias" *ngIf="dataLocalService.noticias.length > 0"></app-noticias>
+  <app-noticias [noticias]="this.dataLocalService.noticias" *ngIf="dataLocalService.noticias.length > 0" [enFavoritos]="true"></app-noticias>
   
   <ion-slides *ngIf="dataLocalService.noticias.length === 0" [options]="slideOpts">
     <ion-slide>
